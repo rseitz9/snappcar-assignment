@@ -1,7 +1,8 @@
 import { bookingService } from '../src/services/booking.service';
-import mongoose, { isValidObjectId } from 'mongoose';
+import { isValidObjectId } from 'mongoose';
 import { CarBookingModel } from '../src/models/car-booking';
 import { connect, closeDatabase, clearDatabase } from './test-utils';
+
 let carId: string,
   startDate = new Date('2021-01-15T00:00:00'),
   endDate = new Date('2021-01-20T00:00:00');
