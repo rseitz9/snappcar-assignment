@@ -27,4 +27,4 @@ COPY --from=builder /usr/src/app/dist ./dist
 
 EXPOSE 7001
 
-CMD ["npm","run","start-prod"]
+CMD ["npm","run","start-docker-dev"]

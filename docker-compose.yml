@@ -10,18 +10,22 @@ services:
       - '7001:7001'
     volumes:
       - ./dist:/app/dist
+      - ./node_modules:/app/node_modules
+      - ./package.json:/app/package.json
     networks:
       - app-network
     links:
       - db
   db:
-    image: mongo:latest
+    image: mongo:4.4.4
     container_name: db
     restart: unless-stopped
     volumes:
       - dbdata:/data/db
     networks:
       - app-network
+    ports:
+      - '7003:27017'
 
 networks:
   app-network:
