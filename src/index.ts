@@ -1,16 +1,14 @@
-import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import logger from "./logger";
-import { bookingRouter } from "./router"
+import { bookingRouter } from "./routers/router"
 import { errorHandler } from "./middleware/error.middleware";
 import { notFoundHandler } from "./middleware/not-found.middleware";
 import mongoose from 'mongoose';
 import loadDemoData from "./loadDbData";
 
 logger.info('starting')
-dotenv.config();
 
 const { PORT, MONGO_CONNECTION_STRING } = process.env;
 if (!PORT || !MONGO_CONNECTION_STRING) {
@@ -38,7 +36,7 @@ db.once('open', () => {
   app.use(notFoundHandler);
 
   app.listen(PORT, () => {
-    logger.info(`Listening on port ${PORT}`);
+    logger.info(`listening on port ${PORT}`);
   });
 })
 

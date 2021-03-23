@@ -1,13 +1,13 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
 interface IBooking {
   startDate: Date,
   endDate: Date
 }
 
-interface ICarBooking {
+interface ICarBooking extends Document {
   _id?: string,
-  bookings?: IBooking[]
+  bookings: IBooking[]
 }
 
 const bookingSchema: Schema = new Schema({
@@ -17,9 +17,9 @@ const bookingSchema: Schema = new Schema({
 
 const carBookingSchema: Schema = new Schema({
   _id: { type: mongoose.Types.ObjectId, auto: true },
-  bookings: [bookingSchema]
+  bookings: { type: [bookingSchema], required: true }
 })
 
-const CarBookingModel = mongoose.model('car-bookings', carBookingSchema)
+const CarBookingModel = mongoose.model<ICarBooking>('car-bookings', carBookingSchema)
 
 export { IBooking, ICarBooking, CarBookingModel }
