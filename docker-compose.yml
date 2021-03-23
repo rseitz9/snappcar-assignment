@@ -1,0 +1,31 @@
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    ports:
+      - '7001:7001'
+    volumes:
+      - ./dist:/app/dist
+    networks:
+      - app-network
+    links:
+      - db
+  db:
+    image: mongo:latest
+    container_name: db
+    restart: unless-stopped
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:

@@ -1,10 +1,13 @@
 {
-  "name": "car-pricing-service",
+  "name": "booking-service",
   "version": "0.0.1",
-  "description": "rest service to calculate the price of a car",
+  "description": "rest service to book a car",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts"
+    "start": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
+    "start-prod": "nodemon ./dist/index.js",
+    "build": "tsc --build",
+    "watch": "tsc --watch"
   },
   "author": "robert seitz",
   "license": "ISC",
@@ -12,7 +15,10 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "helmet": "^4.4.1"
+    "helmet": "^4.4.1",
+    "mongoose": "^5.12.1",
+    "nodemon": "^2.0.7",
+    "tsc": "^1.20150623.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
@@ -20,6 +26,7 @@
     "@types/express": "^4.17.11",
     "@types/helmet": "^4.0.0",
     "@types/jest": "^26.0.21",
+    "@types/mongoose": "^5.10.4",
     "@types/node": "^14.14.35",
     "jest": "^26.6.3",
     "ts-node-dev": "^1.1.6",
