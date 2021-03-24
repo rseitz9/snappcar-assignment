@@ -1,3 +1,4 @@
+import { bookingService } from './car-booking.service';
 import { IPricingBreakdown } from './../models/pricing-breakdown';
 import { differenceInBusinessDays, differenceInCalendarDays } from 'date-fns';
 
@@ -9,6 +10,8 @@ const DISCOUNT_MODIFIER = .15;
 const WEEKEND_MODIFIER = 1.05;
 
 const getPrice = async (id: string, basePriceCents: number, startDate: Date, endDate: Date): Promise<IPricingBreakdown> => {
+  let result = await checkIfBooked(id, startDate, endDate);
+  console.log(result)
   let rentedDays = differenceInCalendarDays(endDate, startDate);
   let rentedWeekdays = differenceInBusinessDays(endDate, startDate);
   let rentedWeekends = rentedDays - rentedWeekdays;
@@ -48,5 +51,7 @@ const getPrice = async (id: string, basePriceCents: number, startDate: Date, end
     totalCents: total
   }
 }
+
+const checkIfBooked = bookingService.checkIfBooked
 
 export const pricingService = { getPrice }
