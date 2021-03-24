@@ -1,6 +1,7 @@
 import { bookingService } from './car-booking.service';
 import { IPricingBreakdown } from './../models/pricing-breakdown';
 import { differenceInBusinessDays, differenceInCalendarDays } from 'date-fns';
+import PricingException from '../models/pricing-exception';
 
 //TODO:move to config and inject dependencies
 const INSURANCE_MODIFIER = .10;
@@ -11,7 +12,10 @@ const WEEKEND_MODIFIER = 1.05;
 
 const getPrice = async (id: string, basePriceCents: number, startDate: Date, endDate: Date): Promise<IPricingBreakdown> => {
   let result = await checkIfBooked(id, startDate, endDate);
-  console.log(result)
+  if (result.isBooked) {
+    throw new PricingException("car is already booked for date range")
+  }
+
   let rentedDays = differenceInCalendarDays(endDate, startDate);
   let rentedWeekdays = differenceInBusinessDays(endDate, startDate);
   let rentedWeekends = rentedDays - rentedWeekdays;

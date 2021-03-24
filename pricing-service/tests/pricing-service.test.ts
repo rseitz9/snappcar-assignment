@@ -1,5 +1,11 @@
 import { pricingService } from './../src/services/pricing.service';
 
+jest.mock('node-fetch', () => jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ isBooked: false }),
+  })
+))
+
 describe('pricing-service', () => {
 
   describe('getPrice:', () => {
