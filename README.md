@@ -18,7 +18,8 @@ limitations and possible next steps:
 6. add database indexes
 7. a query in the form of get all cars that are not booked on <date-range> would be expensive
 8. move config to a better solution. Right now I am setting env vars in docker
-9. multiple services are included in the same repo for convenience :)
+9. package common code from both services to a lib
+10. multiple services are included in the same repo for convenience :)
 
 assumptions:
 
