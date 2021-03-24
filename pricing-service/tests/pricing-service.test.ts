@@ -1,4 +1,5 @@
 import { pricingService } from './../src/services/pricing.service';
+import { expect, describe, it, jest } from '@jest/globals';
 
 
 jest.mock('node-fetch', () => jest.fn(() =>
