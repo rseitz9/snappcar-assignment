@@ -3,12 +3,21 @@ import express, { Request, Response } from "express";
 import asyncHandler from '../utils/asyncHandler';
 import BookingException from '../models/booking-exception';
 import HttpException from '../models/http-exception';
+import { IBooking } from '../models/car-booking';
 import { isValidObjectId } from 'mongoose';
 
 export const bookingRouter = express.Router();
 
 bookingRouter.post('/', asyncHandler(async (req: Request, res: Response) => {
-  let car = await bookingService.createCar();
+  let rawbookings = req.body.bookings || []
+  console.log(req.body.bookings)
+  const parsedBookings: Array<IBooking> = new Array<IBooking>()
+
+  rawbookings.forEach((b:any) => {
+    const validatedBooking = validateAndParseDates(b.startDate, b.endDate);
+    parsedBookings.push(validatedBooking)
+  });
+  let car = await bookingService.createCar(parsedBookings);
   res.status(200).send(car);
 }))
 

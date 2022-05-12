@@ -4,7 +4,7 @@
   "description": "rest service to book a car",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
+    "start": "PORT=7001 MONGO_CONNECTION_STRING=mongodb://localhost:7003/car-pricing-service ts-node-dev --respawn --pretty --transpile-only src/index.ts",
     "start-docker-dev": "nodemon ./dist/index.js",
     "start-prod": "node ./dist/index.js",
     "build": "tsc --build",

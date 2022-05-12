@@ -24,6 +24,6 @@ RUN npm ci --quiet
 
 COPY --from=builder /usr/src/app/dist ./dist
 
-EXPOSE 7000
+EXPOSE 7002
 
 CMD ["npm","run","start-docker-dev"]

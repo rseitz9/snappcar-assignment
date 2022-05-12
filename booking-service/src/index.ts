@@ -11,12 +11,12 @@ import loadDemoData from "./loadDbData";
 logger.info('starting')
 
 const { PORT, MONGO_CONNECTION_STRING } = process.env;
+console.log("PORT:",PORT)
+console.log("CONNECTION",MONGO_CONNECTION_STRING)
 if (!PORT || !MONGO_CONNECTION_STRING) {
   logger.error('Must specify all env vars');
   process.exit(1);
 }
-
-mongoose.connect(MONGO_CONNECTION_STRING, { useNewUrlParser: true })
 
 var db = mongoose.connection
 db.on('error', console.error.bind(console, "connection error"))
@@ -39,6 +39,8 @@ db.once('open', () => {
     logger.info(`listening on port ${PORT}`);
   });
 })
+
+mongoose.connect(MONGO_CONNECTION_STRING, { useNewUrlParser: true })
 
 
 

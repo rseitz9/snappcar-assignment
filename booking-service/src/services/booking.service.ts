@@ -1,12 +1,12 @@
 import logger from '../logger';
 import BookingException from '../models/booking-exception';
-import { CarBookingModel, ICarBooking } from '../models/car-booking';
+import { CarBookingModel, IBooking, ICarBooking } from '../models/car-booking';
 
 const getCar = async (_id: string): Promise<ICarBooking> => {
   return await CarBookingModel.findOne({ _id }).exec();
 }
 
-const createCar = async (bookings: ICarBooking[] = []): Promise<ICarBooking> => {
+const createCar = async (bookings: IBooking[] = []): Promise<ICarBooking> => {
   return await CarBookingModel.create({ bookings })
 }
 
