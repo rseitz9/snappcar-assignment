@@ -30,7 +30,7 @@ services:
     container_name: pricing-service
     restart: unless-stopped
     ports:
-      - '7000:7000'
+      - '7002:7002'
     # volumes:
     #   - ./dist:/app/dist
     #   - ./node_modules:/app/node_modules

@@ -16,7 +16,7 @@ FROM node:14
 WORKDIR /app
 #env vars
 ENV NODE_ENV=production
-ENV PORT=7000
+ENV PORT=7002
 
 COPY package*.json ./
 
