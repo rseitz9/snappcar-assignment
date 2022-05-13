@@ -53,7 +53,7 @@ function validateAndParseDates(start: string, end: string) {
     throw new HttpException(400, "Could not parse endDate");
   }
 
-  if (startDate >= endDate) {
+  if (startDate > endDate) {
     throw new BookingException("startDate must be before endDate");
   }
 
