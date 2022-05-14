@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "PORT=7001 MONGO_CONNECTION_STRING=mongodb://localhost:7003/car-pricing-service ts-node-dev --respawn --pretty --transpile-only src/index.ts",
-    "start-docker-dev": "nodemon ./dist/index.js",
+    "start-docker-dev": "nodemon -L src/index.ts",
     "start-prod": "node ./dist/index.js",
     "build": "tsc --build",
     "clean": "tsc --build -clean",
